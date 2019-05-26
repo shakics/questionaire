@@ -1,0 +1,67 @@
+<div class="container m-t-40">
+    <button type="submit" class="btn btn-primary " (click)="onClick1()" *ngIf="loadQuestion" >Load Question</button>
+
+    <ngb-tabset *ngIf="showQuestion">
+        <ngb-tab *ngFor="let item of question;let i=index">
+            <ng-template ngbTabTitle><div >Question {{i+1}}</div></ng-template>
+            <ng-template ngbTabContent>
+                <!--<form (ngSubmit)="onSubmit()">-->
+                <!--<form [formGroup]="studentAddForm" (ngSubmit)="doRegister()">-->
+
+
+                    <fieldset  >
+                        <fieldset class="form-group">
+                            <legend>{{item.question}}</legend>
+                            <input type="text" (ngModel)="questions[i]['question']"  [value]="item.question" >
+                            <div class="form-group">
+                                <div class="custom-control custom-radio" *ngFor="let ans of item.Answer;let j=index">
+                                    <input type="radio" id="customRadio{{j+1}}"   name="answer" (ngModel)="questionsss"  (click)="onClick2(ans)"     [value]="ans" class="custom-control-input" >
+                                    <label class="custom-control-label" for="customRadio{{j+1}}">{{ans}}</label>
+                                </div>
+                            </div>
+                            <div *ngIf="showsubQuestion">
+                            <fieldset  class="form-group"  *ngFor="let item2 of item.sub_question"  >
+                                <legend>{{item2.question}}</legend>
+                                <input type="hidden" (ngModel)="questions[i]['sub_question']"  [value]="item2.question" >
+                                <!--<input type="hidden" (ngModel)="question" [value]="item2.question">-->
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio" *ngFor="let ans of item2.Answer;let k=index">
+                                        <input type="radio" id="custom{{k}}" name="answer2" (ngModel)="questions[i]['sub_question']"  (click)="onClick3(ans)" [value]="ans"  class="custom-control-input" >
+                                        <!--<input type="radio" id="custom{{k}}" name="answer2" (ngModel)="questions[i]['sub_question']['answer']"  (click)="onClick3(ans)" [value]="ans"  class="custom-control-input" >-->
+                                        <label class="custom-control-label" for="custom{{k}}"  >{{ans}}</label>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="showsubQuestion2">
+                                <fieldset  class="form-group"  *ngFor="let item3 of item2.sub_question2"  >
+                                    <legend>{{item3.question}}</legend>
+                                    <input type="hidden" (ngModel)="questions[i]['sub_question2']"  [value]="item3.question" >
+                                    <div class="form-group">
+                                        <div class="custom-control custom-radio" *ngFor="let ans of item3.Answer;let k=index">
+                                            <input type="radio" id="custo{{k}}" (ngModel)="questions[i]['sub_question2']" name="answer2"  [value]="ans"  class="custom-control-input" >
+                                            <!--<input type="radio" id="custo{{k}}" (ngModel)="questions[i]['sub_question2']['answer']" name="answer2" (ngModel)="answer2" [value]="ans"  class="custom-control-input" >-->
+                                            <label class="custom-control-label" for="custo{{k}}"  >{{ans}}</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                </div>
+                            </fieldset>
+
+                            </div>
+                        </fieldset>
+
+                        <button type="submit" class="btn btn-primary" (click)="submit(questions)">Submit</button>
+                    </fieldset>
+                <!--</form>-->
+            </ng-template>
+        </ngb-tab>
+
+
+    </ngb-tabset>
+
+
+
+
+
+
+</div>
